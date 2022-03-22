@@ -1,0 +1,17 @@
+<h2>By Region</h2>
+<hr>
+<div class="row">
+    <div class="col">
+        <app-input-country placeholder="Search by Region"(onEnter)="search($event)"></app-input-country>
+    </div>
+</div>
+<hr>
+<div *ngIf="isError" class="alert alert-danger">
+    Nothing was found with {{query}}
+</div>
+
+<div *ngIf="!isError && countries.length>0" class="row">
+    <div class="col">
+     <app-table-country [countries]="countries"></app-table-country>
+    </div>
+</div>

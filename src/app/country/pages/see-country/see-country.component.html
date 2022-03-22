@@ -1,0 +1,49 @@
+<div *ngIf="!country;else showCountry" class="alert alert-info">
+    Searching...
+</div>
+<ng-template #showCountry>
+    <div class="row">
+        <div class="col-12">
+            <h1>Country <small>{{country.name.common}}</small></h1>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-4">
+<h3>Flag</h3>
+{{country.flag}}
+        </div>
+        <div class="col">
+            <h3>Information</h3>
+            <ul class="list-group">
+                <li class="list-group-item">
+                    <strong>Population </strong>
+                    <small>{{country.population | number}}</small>
+                </li>
+                <li class="list-group-item">
+                    <strong>Code </strong>
+                    <small>{{country.cca2}}</small>
+                </li>
+                <li class="list-group-item">
+                    <strong>CCA 3 </strong>
+                    <small>{{country.cca3}}</small>
+                </li>
+            </ul>
+        </div>
+    </div>
+
+    <h3>Translations</h3>
+    <div *ngIf="!country.translations;else showTranslations">
+        <span>No translations</span>
+    </div>
+</ng-template>
+
+<ng-template #showTranslations>
+    <div class="row">
+        <div class="col">
+        <!-- <span class="badge bg-primary mr-1" *ngFor="let translation of country.translations;let i =index;">
+            {{translation.common}}
+        </span> -->
+        
+    </div></div>
+</ng-template>
+
