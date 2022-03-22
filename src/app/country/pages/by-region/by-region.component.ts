@@ -11,6 +11,9 @@ export class ByRegionComponent implements OnInit {
 isError:boolean=false;
 query:string='';
 countries:Country[]=[];
+
+regions:string[]=['Africa', 'Americas', 'Asia', 'Europe', 'Oceania' ];
+activeRegion:string='';
   constructor(private countryService:CountryService) { }
 
   ngOnInit(): void {
@@ -22,6 +25,14 @@ countries:Country[]=[];
     (countries)=>{console.log(countries);this.countries=countries;},
     (err)=> {this.isError=true;console.log(err);this.countries=[];}
     );
+  }
+
+  activateRegion(region:string):void{
+if(this.activeRegion===region)return;
+this.activeRegion=region;
+this.countries=[];
+
+this.search(region);
   }
 
 }

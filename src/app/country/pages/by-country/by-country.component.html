@@ -2,9 +2,19 @@
 <hr>
 <div class="row">
     <div class="col">
-        <app-input-country placeholder="Search by Country"(onEnter)="search($event)"></app-input-country>
+        <app-input-country placeholder="Search by Country"(onEnter)="search($event)"
+        (onDebounce)="suggestions($event)"
+        ></app-input-country>
     </div>
 </div>
+<ul class="list-group" *ngIf="showSuggestions">
+    <li class="list-group-item list-group-item-action" style="cursor: pointer;"*ngFor="let c of suggestedCountries">
+        <a class="nav-link" [routerLink]="['/country',c.cca2]" >{{c.name.common}}</a>
+    </li>
+    <li class="list-group-item list-group-item-action"style="cursor: pointer;" (click)="searchBySuggestions(query)">
+        Search "{{query}}"
+    </li>
+</ul>
 <hr>
 <div *ngIf="isError" class="alert alert-danger">
     Nothing was found with {{query}}
@@ -15,3 +25,5 @@
      <app-table-country [countries]="countries"></app-table-country>
     </div>
 </div>
+
+
